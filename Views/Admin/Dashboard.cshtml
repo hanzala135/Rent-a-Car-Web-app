@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+<style>
+    .hr {
+        min-height: 60vh;
+        margin-bottom: 20px;
+        margin-top: 100px;
+
+    }
+</style>
+<div class="container hr">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-6 text-dark">Admin Dashboard</h2>
+        <p class="text-muted">
+            Quick access to manage your cars, bookings, and customer messages.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-controller="Admin" asp-action="ManageCars" class="text-decoration-none">
+                <div class="card h-100 shadow-sm text-center border-0 rounded-4">
+                    <div class="card-body">
+                        <div class="fs-1 mb-3">🚗</div>
+                        <h5 class="fw-bold">Manage Cars</h5>
+                        <p class="text-muted small">
+                            Add, edit or remove cars in your system.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+     
+        <div class="col-md-6 col-lg-3">
+            <a asp-controller="Admin" asp-action="ViewBooking" class="text-decoration-none">
+                <div class="card h-100 shadow-sm text-center border-0 rounded-4">
+                    <div class="card-body">
+                        <div class="fs-1 mb-3">📋</div>
+                        <h5 class="fw-bold">View Bookings</h5>
+                        <p class="text-muted small">
+                            See all customer bookings and statuses.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+            <a asp-controller="Admin" asp-action="Messages" class="text-decoration-none">
+                <div class="card h-100 shadow-sm text-center border-0 rounded-4">
+                    <div class="card-body">
+                        <div class="fs-1 mb-3">✉️</div>
+                        <h5 class="fw-bold">Customer Messages</h5>
+                        <p class="text-muted small">
+                            Read and respond to customer inquiries.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+       
+        <div class="col-md-6 col-lg-3">
+            <a asp-controller="Admin" asp-action="Logout" class="text-decoration-none">
+                <div class="card h-100 text-center border-0 rounded-4 bg-danger text-white shadow">
+                    <div class="card-body">
+                        <div class="fs-1 mb-3">🔒</div>
+                        <h5 class="fw-bold">Logout</h5>
+                        <p class="small">
+                            Sign out from the admin panel.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

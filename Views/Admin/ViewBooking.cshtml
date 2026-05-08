@@ -1,0 +1,138 @@
+﻿@model IEnumerable<SmartCarRentACar.Models.Booking>
+@removeTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string[] statuses = { "Pending", "Confirmed", "Cancelled" };
+}
+<style>
+    .hr {
+        min-height: 70vh;
+        margin-bottom: 20px;
+        margin-top: 100px;
+
+    }
+</style>
+<div class="container my-5 hr">
+
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-6">View Bookings</h2>
+    </div>
+
+
+    <div class="table-responsive shadow-sm rounded">
+        <table id="bookingTable" class="table table-hover align-middle mb-0">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Car</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @foreach (var booking in Model)
+                {
+                    <tr id="booking-@booking.Id">
+                        <td>@booking.Id</td>
+                        <td>@booking.CustomerName</td>
+                        <td>@booking.CarName</td>
+                        <td>@booking.FromDate.ToString("dd/MM/yyyy")</td>
+                        <td>@booking.ToDate.ToString("dd/MM/yyyy")</td>
+                        <td class="status-text fw-semibold">@booking.Status</td>
+
+                        <td>
+                            <form class="update-status-form d-flex justify-content-center gap-2">
+                                <input type="hidden" name="id" value="@booking.Id" />
+
+                                <select name="status" class="form-select form-select-sm w-auto">
+                                    @foreach (var s in statuses)
+                                    {
+                                        <option value="@s" @(s == booking.Status ? "selected" : "")>
+                                            @s
+                                        </option>
+                                    }
+                                </select>
+
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/adminHub")
+        .build();
+
+   
+    connection.on("NewBookingAdded", function (b) {
+        const row = `
+            <tr id="booking-${b.id}">
+                <td>${b.id}</td>
+                <td>${b.customerName}</td>
+                <td>${b.carName}</td>
+                <td>${b.fromDate}</td>
+                <td>${b.toDate}</td>
+                <td class="status-text fw-semibold">${b.status}</td>
+                <td>
+                    <form class="update-status-form d-flex justify-content-center gap-2">
+                        <input type="hidden" name="id" value="${b.id}" />
+                        <select name="status" class="form-select form-select-sm w-auto">
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        `;
+        document.querySelector("#bookingTable tbody").innerHTML += row;
+    });
+
+    connection.on("BookingStatusUpdated", function (id, status) {
+        const row = document.querySelector(`#booking-${id}`);
+        if (row) {
+            row.querySelector(".status-text").innerText = status;
+        }
+    });
+
+    connection.start();
+</script>
+
+<script>
+    document.addEventListener("submit", function (e) {
+        if (!e.target.classList.contains("update-status-form")) return;
+
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        fetch('/Admin/UpdateBookingStatus', {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) {
+                    alert(data.message);
+                }
+            });
+    });
+</script>

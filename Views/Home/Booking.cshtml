@@ -1,0 +1,90 @@
+﻿@model SmartCarRentACar.Models.Booking
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .hr {
+        min-height: 60vh;
+        margin-bottom: 20px;
+        margin-top: 100px;
+
+    }
+</style>
+<div class="container hr">
+
+    <!-- Title -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-6">Book Your Car</h2>
+    </div>
+
+    <!-- Success Message -->
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success text-center">
+            @ViewBag.Success
+        </div>
+    }
+
+    <!-- Booking Form -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <form asp-action="Booking" method="post">
+
+                        <!-- Car Name -->
+                        <div class="mb-3">
+                            <label asp-for="CarName" class="form-label fw-semibold"></label>
+                            <input asp-for="CarName" class="form-control" />
+                            <span asp-validation-for="CarName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Customer Name -->
+                        <div class="mb-3">
+                            <label asp-for="CustomerName" class="form-label fw-semibold"></label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="form-label fw-semibold"></label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger small"></span>
+                        </div>
+
+                        <!-- From Date -->
+                        <div class="mb-3">
+                            <label asp-for="FromDate" class="form-label fw-semibold"></label>
+                            <input asp-for="FromDate" type="date" class="form-control" />
+                            <span asp-validation-for="FromDate" class="text-danger small"></span>
+                        </div>
+
+                        <!-- To Date -->
+                        <div class="mb-4">
+                            <label asp-for="ToDate" class="form-label fw-semibold"></label>
+                            <input asp-for="ToDate" type="date" class="form-control" />
+                            <span asp-validation-for="ToDate" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Hidden Status -->
+                        <input type="hidden" asp-for="Status" value="Pending" />
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Submit Booking
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

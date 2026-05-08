@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SmartCarRentACar.Models.Car>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero Section -->
+<section class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="fw-bold mb-3">Premium Cars For Your Perfect Ride</h1>
+            <p class="mb-4 text-muted">
+                Rent luxury, comfort, and performance vehicles at affordable rates.
+                Experience effortless booking and 24/7 customer support.
+            </p>
+            <a href="/Home/Cars" class="btn btn-primary btn-lg">Browse Cars</a>
+        </div>
+        <div class="col-lg-6 text-center mt-4 mt-lg-0">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="img-fluid rounded-4 shadow"
+                alt="Hero Car" />
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold mb-4">Our Services</h2>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 text-center shadow-sm border-0 rounded-4 p-3">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d" class="card-img-top rounded-3"
+                    style="height:150px; object-fit:cover;" alt="Service 1" />
+                <div class="card-body">
+                    <h5 class="fw-bold">Daily & Weekly Rentals</h5>
+                    <p class="text-muted">Flexible rental durations with transparent pricing and no hidden fees.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 text-center shadow-sm border-0 rounded-4 p-3">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d" class="card-img-top rounded-3"
+                    style="height:150px; object-fit:cover;" alt="Service 2" />
+                <div class="card-body">
+                    <h5 class="fw-bold">Luxury Vehicles</h5>
+                    <p class="text-muted">Choose from a variety of luxury cars for business trips and events.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 text-center shadow-sm border-0 rounded-4 p-3">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d" class="card-img-top rounded-3"
+                    style="height:150px; object-fit:cover;" alt="Service 3" />
+                <div class="card-body">
+                    <h5 class="fw-bold">24/7 Support</h5>
+                    <p class="text-muted">Our customer support is always available to assist your journey.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Cars Section -->
+@if (Model != null && Model.Any())
+{
+    <section class="container my-5">
+        <h2 class="text-center fw-bold mb-4">Featured Cars</h2>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var car in Model.Take(3))
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card h-100 text-center shadow-sm border-0 rounded-4">
+                        <img src="@car.ImageUrl" class="card-img-top rounded-top-4" style="height:150px; object-fit:cover;"
+                            alt="@car.Model" />
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-1">@car.Model</h5>
+                            <h6 class="text-muted mb-2">@car.CarName</h6>
+                            <p class="fw-semibold text-primary">PKR @car.PricePerDay / day</p>
+                            <a href="/Home/CarDetails/@car.Id" class="btn btn-primary btn-sm w-100">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}

@@ -1,0 +1,74 @@
+@model SmartCarRentACar.Models.Car
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg rounded-4">
+                <div class="card-body p-4">
+
+                    <h2 class="text-center fw-bold mb-4 text-primary">
+                        @(Model.Id == 0 ? "Add New Car" : "Edit Car")
+                    </h2>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center fw-semibold">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    <form asp-action="AddCar" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="CarName" class="form-label fw-semibold"></label>
+                            <input asp-for="CarName" class="form-control" />
+                            <span asp-validation-for="CarName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Model" class="form-label fw-semibold"></label>
+                            <input asp-for="Model" class="form-control" />
+                            <span asp-validation-for="Model" class="text-danger small"></span>
+                        </div>
+
+          
+                        <div class="mb-3">
+                            <label asp-for="PricePerDay" class="form-label fw-semibold"></label>
+                            <input asp-for="PricePerDay" type="number" class="form-control" />
+                            <span asp-validation-for="PricePerDay" class="text-danger small"></span>
+                        </div>
+
+              
+                        <div class="mb-3">
+                            <label asp-for="IsAvailable" class="form-label fw-semibold"></label>
+                            <select asp-for="IsAvailable" class="form-select">
+                                <option value="true">Available</option>
+                                <option value="false">Booked</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ImageUrl" class="form-label fw-semibold"></label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                        </div>
+
+                    
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                @(Model.Id == 0 ? "Add Car" : "Update Car")
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

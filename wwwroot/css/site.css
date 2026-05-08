@@ -1,0 +1,170 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+         
+    display: flex;          
+    flex-direction: column;  
+    background: #F1F5F9;
+    color: #1E293B;
+}
+
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.center-title {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 32px;
+}
+
+.navbar {
+    background: #0F172A;
+    padding: 25px 0;
+
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+    .nav-links a {
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .nav-links a:hover {
+            color: #3B82F6;
+        }
+
+.admin-btn {
+    padding: 6px 14px;
+    background: #3B82F6;
+    border-radius: 5px;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 10%;
+    align-items: center;
+}
+
+.hero-text {
+    width: 50%;
+}
+
+    .hero-text h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+
+    .hero-text p {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+.hero-car {
+    width: 45%;
+    border-radius: 10px;
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.service-box {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+    .service-box img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.car-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+    .car-card img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+.btn {
+    background: #3B82F6;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+footer {
+    background: #0F172A;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+
+@media (max-width: 768px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text, .hero-car {
+        width: 100%;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+}

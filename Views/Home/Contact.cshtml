@@ -1,0 +1,69 @@
+﻿@model SmartCarRentACar.Models.Message
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container my-5" style="min-height:70vh;">
+
+    <h2 class="text-center fw-bold mb-2">Contact Us</h2>
+
+    <p class="text-center text-muted mb-4">
+        Have questions? We'd love to hear from you! Fill out the form below and we’ll get back to you shortly.
+    </p>
+
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success text-center">
+            @ViewBag.Success
+        </div>
+    }
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+
+                <form asp-action="Contact" method="post">
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label asp-for="SenderName" class="form-label fw-semibold"></label>
+                        <input asp-for="SenderName" class="form-control rounded-3"
+                               placeholder="Enter your name" />
+                        <span class="text-danger small" asp-validation-for="SenderName"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        <input asp-for="Email" type="email"
+                               class="form-control rounded-3"
+                               placeholder="Enter your email" />
+                        <span class="text-danger small" asp-validation-for="Email"></span>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="mb-4">
+                        <label asp-for="Content" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Content"
+                                  class="form-control rounded-3"
+                                  rows="5"
+                                  placeholder="Write your message here..."></textarea>
+                        <span class="text-danger small" asp-validation-for="Content"></span>
+                    </div>
+
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                        Send Message
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

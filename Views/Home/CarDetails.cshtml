@@ -1,0 +1,56 @@
+﻿@model SmartCarRentACar.Models.Car
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5" style="min-height:70vh;">
+
+    <div class="row align-items-center g-4">
+
+        <!-- Car Image -->
+        <div class="col-md-6 text-center">
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Model"
+                 class="img-fluid rounded shadow"
+                 style="max-height:400px; object-fit:cover;" />
+        </div>
+
+        <!-- Car Details -->
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">@Model.Model Details</h2>
+
+            <p class="mb-2">
+                <strong>Model:</strong> @Model.Model
+            </p>
+
+            <p class="mb-2">
+                <strong>Car Name:</strong> @Model.CarName
+            </p>
+
+            <p class="mb-2">
+                <strong>Price Per Day:</strong>
+                <span class="text-primary fw-semibold">
+                    PKR @Model.PricePerDay
+                </span>
+            </p>
+
+            <p class="mb-4">
+                <strong>Availability:</strong>
+                @if (Model.IsAvailable)
+                {
+                    <span class="badge bg-success ms-2">Available</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger ms-2">Not Available</span>
+                }
+            </p>
+
+            <a href="/Home/Booking" class="btn btn-primary btn-lg">
+                Book Now
+            </a>
+        </div>
+
+    </div>
+
+</div>

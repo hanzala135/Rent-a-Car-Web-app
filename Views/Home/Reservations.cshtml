@@ -1,0 +1,51 @@
+@model IEnumerable<SmartCarRentACar.Models.Booking>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .hr {
+        min-height: 70vh;
+        margin-bottom: 20px;
+        margin-top: 100px;
+
+    }
+</style>
+<div class="container my-5 hr">
+    <h2 class="text-center fw-bold mb-4">View Bookings</h2>
+
+    <div class="table-responsive shadow-sm rounded-4 bg-white p-3">
+        <table class="table table-bordered align-middle text-center mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Car</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.Id</td>
+                        <td>@booking.CustomerName</td>
+                        <td>@booking.CarName</td>
+                        <td>@booking.FromDate.ToString("dd/MM/yyyy")</td>
+                        <td>@booking.ToDate.ToString("dd/MM/yyyy")</td>
+                        <td class="fw-semibold">@booking.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .table tbody tr:hover {
+        background-color: #f1f5f9;
+        transition: background-color 0.2s ease;
+    }
+</style>
